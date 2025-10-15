@@ -30,8 +30,40 @@ The data was collected using a custom Python script that programmatically querie
 
 #### 5. Feature Engineering: Three new features are generated to facilitate the analysis:
 
-- ***subfield***: The article's title and abstract are scanned for keywords to classify it into one of 12 predefined economic subfields.
+- ***subfield***: The article's title and abstract are scanned for an extensive dictionary of keywords to classify it into one of 18 predefined economic subfields. The classification uses a weighted scoring system (giving more importance to multi-word phrases like "instrumental variable") and intelligent tie-breaking logic to improve accuracy.
 
-- ***countries***: The institutions field is parsed to identify the home countries of the authors' affiliations.
+- ***countries***: The institutions field is parsed using a comprehensive list of patterns to identify the home countries of authors. This method goes beyond simple country names and recognizes major universities, research institutions (e.g., NBER), central banks, and major cities to significantly enhance matching accuracy.
 
-- ***has_china_author***: A boolean flag is set to True if any author has an affiliation in China or Hong Kong.
+- ***has_china_author & has_usa_author***: Boolean flags are set to **True** if any author has an affiliation in China/Hong Kong or the USA, respectively.
+- ***num_countries***: A count of the unique countries identified for each article, used to gauge international collaboration.
+- ***no_country_identified***: A boolean flag to easily filter for articles where affiliation data was missing or unidentifiable.
+
+### Data Dictionary
+The final dataset (cleaned_data.csv) is organized with the following columns:
+| Column                  | Description                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- |
+| `tier`                  | The prestige category of the journal (e.g., 'Top 5', 'Mid-Tier').                                       |
+| `journal`               | The name of the journal.                                                                                |
+| `year`                  | The publication year of the article.                                                                    |
+| `title`                 | The title of the article.                                                                               |
+| `authors`               | A semicolon-separated list of the article's authors.                                                    |
+| `institutions`          | A semicolon-separated list of unique author affiliations.                                               |
+| `abstract`              | The abstract of the article (if available).                                                             |
+| `volume`                | The journal volume number.                                                                              |
+| `issue`                 | The journal issue number.                                                                               |
+| `subfield`              | The classified economic subfield (e.g., 'Labor Economics', 'Political Economy').                        |
+| `countries`             | A semicolon-separated list of unique author countries, derived from affiliations.                       |
+| `num_countries`         | The number of unique countries identified from author affiliations.                                     |
+| `has_china_author`      | A boolean (`True`/`False`) indicating if any author is affiliated with an institution in China/Hong Kong. |
+| `has_usa_author`        | A boolean (`True`/`False`) indicating if any author is affiliated with an institution in the USA.         |
+| `no_country_identified` | A boolean (`True`/`False`) indicating if no country could be identified from the affiliation data.        |
+
+### Limitations of the Data
+
+The primary limitation of this dataset is its reliance on the completeness of the Crossref database.
+
+- **Missing Abstracts**: A significant portion of abstracts, especially for articles published before ~2010, are not available. This directly impacts the accuracy of the subfield classification.
+
+- **Incomplete Affiliations**: While the new country identification method is far more robust, its accuracy is still constrained by the quality of the affiliation data provided by publishers.
+
+- **Keyword Classification Errors**: The subfield classification, while significantly improved, is still a heuristic method and may not capture the nuance of every paper perfectly, especially for interdisciplinary work.
