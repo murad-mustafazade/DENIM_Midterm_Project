@@ -138,6 +138,5 @@ While the bar chart shows absolute numbers, it's also useful to see the proporti
 ## 4. Extensions and Future Research
 
 * **Validate Subfield Classification:** The heuristic `subfield` classification could be validated against a subset of articles where author-provided JEL (Journal of Economic Literature) codes are available.
-* **Granular Affiliation Analysis:** The dataset could be extended to analyze contributions from specific universities (e.g., Tsinghua University vs. University of Chicago) rather than just countries.
 * **International Collaboration Analysis:** The script could be modified to generate a `num_countries` column to analyze trends in international co-authorship over time.
-* **Author-Level Tracking:** The analysis could be extended to track the publication records of individual authors to study career trajectories, international mobility, and collaboration patterns.
+* **Author-Level Tracking:** The analysis could be extended to track the publication records of individual authors.
