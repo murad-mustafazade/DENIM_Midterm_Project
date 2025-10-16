@@ -69,20 +69,20 @@ The analysis is conducted using the pandas library in Python. It involves groupi
 
 ### Visualizations
 
-#### Part 0: All Journals Over Time
+#### Part 1: All Journals Over Time
 
 For a complete but less readable overview, the following chart plots the publication volume for all 30 journals on a single set of axes.
 
-**Figure 0: All Articles by Journal Over Time**
+**Figure 1: All Articles by Journal Over Time**
 <img width="1920" height="967" alt="Figure_1 (1)" src="https://github.com/user-attachments/assets/ac4ca12e-8694-48f5-9e98-caf5cd6c722c" />
 
 
 
 
-#### Part 1: Overall Publication Trends by Journal Tier
+#### Part 2: Overall Publication Trends by Journal Tier
 First, we examine the overall publication volume. The number of articles published per year varies significantly across tiers, with mid-tier journals publishing the highest volume.
 
-**Figure 1: Number of Articles Over Time — All Tiers Summary**
+**Figure 2: Number of Articles Over Time — All Tiers Summary**
 <img width="800" height="500" alt="Figure_6" src="https://github.com/user-attachments/assets/2a83cfb6-906c-483d-8135-2d96432cffce" />
 
 
@@ -92,15 +92,15 @@ To see the detail behind this summary, the following plots show the trends for e
 
 | Journals Grouped by Tier                                                                                                                              |                                                                                                                                                         |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                             **Figure 2: Trends in Top 5 Journals**<br><img alt="Figure_2" src="https://github.com/user-attachments/assets/d0d7165d-157e-4761-8fac-9ff06cd7dbd6">                                             |                                       **Figure 3: Trends in Top Field Journals**<br><img alt="Figure_3" src="https://github.com/user-attachments/assets/ce4a2147-f5e2-4490-ad22-8221a1b4eb70">                                        |
-|                                            **Figure 4: Trends in Mid-Tier Journals**<br><img alt="Figure_4" src="https://github.com/user-attachments/assets/f1f44953-479a-4d42-9783-694f617be16b">                                            |                                 **Figure 5: Trends in Lower-Tier & Regional Journals**<br><img alt="Figure_5" src="https://github.com/user-attachments/assets/042a8308-ce86-4643-8d42-1b7791b013ad">                                 |
+|                                             **Figure 3: Trends in Top 5 Journals**<br><img alt="Figure_2" src="https://github.com/user-attachments/assets/d0d7165d-157e-4761-8fac-9ff06cd7dbd6">                                             |                                       **Figure 4: Trends in Top Field Journals**<br><img alt="Figure_3" src="https://github.com/user-attachments/assets/ce4a2147-f5e2-4490-ad22-8221a1b4eb70">                                        |
+|                                            **Figure 5: Trends in Mid-Tier Journals**<br><img alt="Figure_4" src="https://github.com/user-attachments/assets/f1f44953-479a-4d42-9783-694f617be16b">                                            |                                 **Figure 6: Trends in Lower-Tier & Regional Journals**<br><img alt="Figure_5" src="https://github.com/user-attachments/assets/042a8308-ce86-4643-8d42-1b7791b013ad">                                 |
 
 
-#### Part 2: Country-Level Publication Analysis
+#### Part 3: Country-Level Publication Analysis
 
 Next, we analyze the geographic distribution of author affiliations. 
 
-**Figure 6: Total Articles per Country, Split by Journal Tier**
+**Figure 7: Total Articles per Country, Split by Journal Tier**
 
 This chart shows the total number of articles for each country, stacked by the tier of the journal.
 <img width="1000" height="600" alt="Figure_7 (1)" src="https://github.com/user-attachments/assets/f73667ae-8b96-4eb0-b479-cd1f57b91e36" />
@@ -109,29 +109,29 @@ This chart shows the total number of articles for each country, stacked by the t
 
 While the bar chart shows absolute numbers, it's also useful to see the proportional distribution. The following pie charts show, for the top 6 contributing countries, what percentage of their total output is published in each tier. This reveals different publication patterns; for instance, a higher proportion of US & Canada-affiliated papers are in top-tier journals compared to other countries, while China-affiliated papers are focused on mid-tier journals.
 
-**Figure 7: Tier Distribution for the Top 6 Countries**
+**Figure 8: Tier Distribution for the Top 6 Countries**
 <img width="1920" height="967" alt="Figure_8" src="https://github.com/user-attachments/assets/d3feff78-43fc-41b2-bc9e-0f16f5e4b5cb" />
 
-**Figure 8: Share of Journal Tiers in China**
+**Figure 9: Share of Journal Tiers in China**
 <img width="1920" height="967" alt="Figure_9" src="https://github.com/user-attachments/assets/eff94011-d3cd-4760-a34a-6428e4f5d57a" />
 
 
-#### Part 3: Subfield Analysis
-**Figure 9: Number of Articles in Each Subfield Over Time**
+#### Part 4: Subfield Analysis
+**Figure 10: Number of Articles in Each Subfield Over Time**
 <img width="1200" height="600" alt="Figure_10" src="https://github.com/user-attachments/assets/e1848431-67f8-4028-9cb4-22fc307a6311" />
 
 
-**Figure 10: Growth in Number of Articles by Subfield (2005-2025)**
+**Figure 11: Growth in Number of Articles by Subfield (2005-2025)**
 <img width="1000" height="600" alt="Figure_11" src="https://github.com/user-attachments/assets/2358bf13-b911-42bb-b8a0-b515ba0c3e63" />
 
-**Figure 11: Country Specialization by Subfield**
+**Figure 12: Country Specialization by Subfield**
 <img width="1200" height="800" alt="Figure_12" src="https://github.com/user-attachments/assets/8d8187d6-8f6c-46b4-be11-92296df3a9ed" />
 
 
 ### Limitations of the Analysis
 
 * **Author Origin vs. Affiliation:** This analysis tracks the location of the author's **institution**, not their nationality. An American-born professor working at Peking University would be counted as "China-affiliated."
-* **Single Country Affiliation:** The `has_china_author` flag is `True` even if only one of multiple co-authors is based in that country.
+* **Single Country Affiliation:** The `has_china_author` flag is `True` even if only one of multiple co-authors is based in China.
 * **No Causal Analysis:** The analysis identifies trends and correlations but does not make any causal claims about why these trends are occurring.
 
 ---
