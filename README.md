@@ -115,6 +115,18 @@ While the bar chart shows absolute numbers, it's also useful to see the proporti
 <img width="1920" height="967" alt="Figure_9" src="https://github.com/user-attachments/assets/eff94011-d3cd-4760-a34a-6428e4f5d57a" />
 
 
+#### Part 3: Subfield Analysis
+**Figure 9: Number of Articles in Each Subfield Over Time**
+<img width="1200" height="600" alt="Figure_10" src="https://github.com/user-attachments/assets/e1848431-67f8-4028-9cb4-22fc307a6311" />
+
+
+**Figure 10: Growth in Number of Articles by Subfield (2005-2025)**
+<img width="1000" height="600" alt="Figure_11" src="https://github.com/user-attachments/assets/2358bf13-b911-42bb-b8a0-b515ba0c3e63" />
+
+**Figure 11: Country Specialization by Subfield**
+<img width="1200" height="800" alt="Figure_12" src="https://github.com/user-attachments/assets/8d8187d6-8f6c-46b4-be11-92296df3a9ed" />
+
+
 ### Limitations of the Analysis
 
 * **Author Origin vs. Affiliation:** This analysis tracks the location of the author's **institution**, not their nationality. An American-born professor working at Peking University would be counted as "China-affiliated."
