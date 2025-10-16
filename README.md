@@ -66,9 +66,56 @@ The final dataset (cleaned_data.csv) is organized with the following columns:
 ### Methodology
 The analysis is conducted using the pandas library in Python. It involves grouping, aggregating, and counting the data to answer the core research questions. Proportions and percentages are calculated to compare trends across different groups (tiers, years, countries). The findings are visualized using Matplotlib to create line charts, pie charts, and stacked bar charts.
 
-### Project Findings
 
 ### Visualizations
+
+#### Part 0: All Journals Over Time
+
+For a complete but less readable overview, the following chart plots the publication volume for all 30 journals on a single set of axes.
+
+**Figure 0: All Articles by Journal Over Time**
+<img width="1000" height="500" alt="All articles by journals over time" src="https://github.com/user-attachments/assets/f89a6261-628b-447f-8905-4cbbd9acaeaa" />
+
+
+#### Part 1: Overall Publication Trends by Journal Tier
+First, we examine the overall publication volume. The number of articles published per year varies significantly across tiers, with mid-tier journals publishing the highest volume.
+
+**Figure 1: Number of Articles Over Time — All Tiers Summary**
+<img width="800" height="500" alt="Number of articles over time- Tier Summary" src="https://github.com/user-attachments/assets/9b56f98d-90b1-45d1-a7f5-ee4d9f684c9e" />
+
+
+
+To see the detail behind this summary, the following plots show the trends for each individual journal within the four tiers.
+
+**Figure 2: Trends in Top 5 Journals**
+<img width="1000" height="500" alt="Number of articles over time- Top 5 journals" src="https://github.com/user-attachments/assets/35a8a716-9e5f-4cb7-8bae-08b6c863ba11" />
+
+
+**Figure 3: Trends in Field Specific Journals**
+<img width="1000" height="500" alt="Number of articles over time- Field Specific Journals" src="https://github.com/user-attachments/assets/d27a46a7-faaf-41b2-86d6-6398d3b828a7" />
+
+
+**Figure 4: Trends in Mid-Tier Journals**
+<img width="1000" height="500" alt="Number of articles over time- Mid Tier Journals" src="https://github.com/user-attachments/assets/e7c43568-ee20-4100-89a0-4fac838a4039" />
+
+
+**Figure 5: Trends in Lower-Tier & Regional Journals**
+<img width="1000" height="500" alt="Number of articles over time- Low tier Journals" src="https://github.com/user-attachments/assets/5db4f1bf-d99c-4be7-8919-750dc4749381" />
+
+#### Part 2: Country-Level Publication Analysis
+
+Next, we analyze the geographic distribution of author affiliations. 
+
+**Figure 6: Total Articles per Country, Split by Journal Tier**
+
+This chart shows the total number of articles for each country, stacked by the tier of the journal.
+<img width="1000" height="600" alt="Number of articles per country by tier" src="https://github.com/user-attachments/assets/1bfe5c56-e39e-479c-899f-670366835ae8" />
+
+
+While the bar chart shows absolute numbers, it's also useful to see the proportional distribution. The following pie charts show, for the top 6 contributing countries, what percentage of their total output is published in each tier. This reveals different publication patterns; for instance, a higher proportion of US & Canada-affiliated papers are in top-tier journals compared to other countries, while China-affiliated papers are focused on mid-tier journals.
+
+**Figure 7: Tier Distribution for the Top 6 Countries**
+<img width="1280" height="692" alt="Tier distribution of top 6 countries" src="https://github.com/user-attachments/assets/96844ce7-e2f4-402c-b540-be69f4aa83ba" />
 
 ### Limitations of the Analysis
 
