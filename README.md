@@ -2,13 +2,13 @@
 
 ## 1. Project Goal
 
-This project aims to analyze the publication landscape of 30 prominent economics journals over the past two decades (2005-2025). It is often the case that the majority of articles within published journals are affiliated with American universities/authors. However, there is a common belief that this trend is changing over time. The primary goal of this project is to investigate the representation of authors affiliated with Chinese institutions and to identify how this presence has evolved over time and across different tiers of journal prestige.
+The goal of this project is to collect data on publications and analyze the publication landscape of 30 prominent economics journals over 2005-2025. It is often the case that the majority of articles within published journals are affiliated with American universities/authors. However, there is a common belief that this trend is changing over time. The primary goal of this project is to investigate the representation of authors affiliated with Chinese institutions and to identify how this presence has evolved over time and across different tiers of journal prestige.
 
 The key research questions are:
 
 - **How has the number of publications with foreign-affiliated authors changed in top economics journals since 2005?**
 
-- **Is there a significant difference in the representation of foreign-affiliated authors between top-tier, mid-tier, lower-tier and field-specific journals?**
+- **Is there a significant difference in the representation of foreign-affiliated authors among journal reputation tiers?**
 
 - **What are the most common economic subfields for articles with foreign-affiliated authors?**
 
@@ -16,11 +16,11 @@ The key research questions are:
 
 ##  2. Data Source and Collection
 ### Data Source
-The sole data source for this project is the **Crossref API**. Crossref is a non-profit organization that doesn't require an API key or authentification. Crossref maintains a massive, public database of scholarly publication metadata. This data is supplied directly by the publishers, ensuring it is a reliable and authoritative source for bibliographic information.
+The data source for this project is the **Crossref API**. Crossref is a non-profit organization that does not require an API key or authentification. Crossref maintains a massive, public database of scholarly publication metadata. This data is supplied directly by the publishers, ensuring it is a reliable and authoritative source for bibliographic information.
 
 ### Data Collection Method
 
-The data was collected using a custom Python script that programmatically queries the Crossref API. The process is as follows:
+The data collection process was the following:
 
 1.  **Journal Identification:** Each of the 30 target journals is identified by its unique International Standard Serial Number (ISSN).
 
@@ -30,10 +30,10 @@ The data was collected using a custom Python script that programmatically querie
 
 4.  **Data Extraction and Cleaning:** For each article, the script parses the raw JSON response to extract key metadata and performs cleaning operations, such as removing HTML tags from abstracts.
 
-5.  **Feature Engineering:** Several new features are generated using advanced heuristics to facilitate the analysis:
-    * `subfield`: The article's title and abstract are scanned for an extensive dictionary of keywords to classify it into one of 18 predefined economic subfields. The classification uses a **weighted scoring system** (giving more importance to multi-word phrases like "instrumental variable") and intelligent tie-breaking logic to improve accuracy.
-    * `countries`: The `institutions` field is parsed using a comprehensive list of patterns to identify the home countries of authors. This method goes beyond simple country names and recognizes **major universities, research institutions (e.g., NBER), central banks, and major cities** to significantly enhance matching accuracy.
-    * `has_china_author`: A boolean flag is set to `True` if any author has an affiliation in China or Hong Kong.
+5.  **Feature Engineering:** We created several new columns to help facilitate the analysis:
+    * `subfield`: The article's title and abstract are scanned for an extensive dictionary of keywords to classify it into one of 18 predefined economic subfields. 
+    * `countries`: We created an extensive dictionary of words most seen in the `institutions` column to assign countries to each article. We then cross-verified the accuracy of this through some manual tests on the CSV. 
+    * `has_china_author`: A boolean flag is set to `True` if any author has an affiliation in Mainland China, Hong Kong or Macao.
 
 ### Data Dictionary
 The final dataset (cleaned_data.csv) is organized with the following columns:
@@ -119,7 +119,7 @@ While the bar chart shows absolute numbers, it's also useful to see the proporti
 
 * **Author Origin vs. Affiliation:** This analysis tracks the location of the author's **institution**, not their nationality. An American-born professor working at Peking University would be counted as "China-affiliated."
 * **Single Country Affiliation:** The `has_china_author` flag is `True` even if only one of multiple co-authors is based in that country.
-* **No Causal Claims:** The analysis identifies trends and correlations but does not make any causal claims about why these trends are occurring.
+* **No Causal Analysis:** The analysis identifies trends and correlations but does not make any causal claims about why these trends are occurring.
 
 ---
 
