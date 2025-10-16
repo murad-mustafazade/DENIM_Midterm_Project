@@ -194,3 +194,69 @@ plt.legend(title="Journal Tier", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.show()
 
+# ----------------------------------------
+# Number of Articles in Each Subfield Over Time
+# ----------------------------------------
+
+plt.figure(figsize=(12, 6))
+df.groupby(['year', 'subfield']).size().unstack(fill_value=0).plot(
+    ax=plt.gca(),
+    colormap='tab20',  # distinct, colorblind-friendly
+    linewidth=2
+)
+plt.title("Number of Articles in Each Subfield Over Time")
+plt.xlabel("Year")
+plt.ylabel("Number of Articles")
+plt.legend(title="Subfield", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+plt.show()
+
+# ----------------------------------------
+# Country Specialization in Subfields
+# ----------------------------------------
+
+# Count articles by country and subfield
+country_subfield = (
+    df_exploded.groupby(['countries_list', 'subfield']).size().unstack(fill_value=0)
+)
+
+# Convert to shares (row-wise)
+country_subfield_share = country_subfield.div(country_subfield.sum(axis=1), axis=0)
+
+# Keep only top 15 countries by total number of articles
+top_countries = df_exploded['countries_list'].value_counts().head(15).index
+country_subfield_share = country_subfield_share.loc[top_countries]
+
+# Plot heatmap
+plt.figure(figsize=(12, 8))
+import seaborn as sns
+sns.heatmap(country_subfield_share, cmap="YlGnBu", annot=False)
+
+plt.title("Country Specialization by Subfield (Share of Articles)")
+plt.xlabel("Subfield")
+plt.ylabel("Country")
+plt.tight_layout()
+plt.show()
+
+# Group by year and subfield
+subfield_trend = df.groupby(['year', 'subfield']).size().unstack(fill_value=0)
+
+# Keep only years in range 2005–2025 (if they exist)
+subfield_trend = subfield_trend.loc[(subfield_trend.index >= 2005) & (subfield_trend.index <= 2025)]
+
+# Compute growth rate from 2005 to 2025
+growth_rate = (
+    (subfield_trend.loc[2025] - subfield_trend.loc[2005])
+    / subfield_trend.loc[2005]
+    * 100
+).sort_values(ascending=False)
+
+# Plot growth rates
+plt.figure(figsize=(10, 6))
+sns.barplot(x=growth_rate.values, y=growth_rate.index, palette="viridis")
+
+plt.title("Growth in Number of Articles by Subfield (2005–2025)")
+plt.xlabel("Growth Rate (%)")
+plt.ylabel("Subfield")
+plt.tight_layout()
+plt.show()
