@@ -74,7 +74,8 @@ The analysis is conducted using the pandas library in Python. It involves groupi
 For a complete but less readable overview, the following chart plots the publication volume for all 30 journals on a single set of axes.
 
 **Figure 0: All Articles by Journal Over Time**
-<img width="1000" height="500" alt="Figure_1" src="https://github.com/user-attachments/assets/153e72b2-d0ba-41be-b94f-47282cc4dc9a" />
+<img width="1920" height="967" alt="Figure_1 (1)" src="https://github.com/user-attachments/assets/ac4ca12e-8694-48f5-9e98-caf5cd6c722c" />
+
 
 
 
