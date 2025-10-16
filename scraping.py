@@ -78,9 +78,8 @@ def download_journal(journal_name, issn, tier, from_year=2005, to_year=2025):
             if not items:
                 break
             
-            # Extract data from each article
+
             for item in items:
-                # Get authors
                 authors = []
                 institutions = []
                 
@@ -92,28 +91,24 @@ def download_journal(journal_name, issn, tier, from_year=2005, to_year=2025):
                         elif 'family' in author:
                             authors.append(author['family'])
                         
-                        # Get institutions
                         if 'affiliation' in author:
                             for aff in author['affiliation']:
                                 if 'name' in aff:
                                     institutions.append(aff['name'])
                 
-                # Get title
+
                 title = ''
                 if 'title' in item and item['title']:
                     title = item['title'][0] if isinstance(item['title'], list) else item['title']
                 
-                # Get year
                 year = ''
                 if 'published' in item:
                     pub_date = item['published']
                     if 'date-parts' in pub_date and pub_date['date-parts']:
                         year = str(pub_date['date-parts'][0][0])
                 
-                # Get abstract
                 abstract = item.get('abstract', '')
                 
-                # Store article data
                 articles.append({
                     'tier': tier,
                     'journal': journal_name,
@@ -126,7 +121,6 @@ def download_journal(journal_name, issn, tier, from_year=2005, to_year=2025):
                     'abstract': abstract,
                 })
             
-            # Get next page
             if 'next-cursor' in data['message']:
                 cursor = data['message']['next-cursor']
             else:
@@ -142,9 +136,9 @@ def download_journal(journal_name, issn, tier, from_year=2005, to_year=2025):
     return articles
 
 def main():
+    """Create a CSV file containing all the inflormation""
     all_articles = []
     
-    # Download from each journal
     for tier, journals in JOURNALS.items():
         for journal_name, issn in journals.items():
             print(f"Downloading {journal_name}...")
@@ -155,7 +149,6 @@ def main():
             print(f"  Got {len(articles)} articles")
             time.sleep(2)
     
-    # Save raw data with simple filename
     df = pd.DataFrame(all_articles)
     output_file = 'raw_data.csv'
     
