@@ -4,6 +4,8 @@ import swifter
 from datetime import datetime
 from collections import Counter
 
+"""Dictionary of keywords for subfield assignment"""
+
 SUBFIELD_KEYWORDS = {
     'Labor Economics': ['labor', 'labour', 'employment', 'unemployment', 'wage', 'worker', 'job', 'human capital',
                         'education', 'skill', 'occupation', 'career', 'workplace', 'hiring', 'firing', 'layoff',
@@ -144,9 +146,7 @@ def get_countries(institution_text):
     countries = []
     text = str(institution_text)
    
-    # USA - most comprehensive (check first for US-specific patterns)
     usa_patterns = [
-        # Explicit country mentions
         r'\bUSA\b', r'\bU\.S\.A\.?\b', r'\bUnited States\b', r'\bU\.S\.\b',
         # State abbreviations with zip codes
         r', (AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY)\s*\d{5}',
@@ -155,9 +155,9 @@ def get_countries(institution_text):
         # US-specific city mentions (Cambridge MA, not Cambridge UK)
         r'\bCambridge,?\s+(MA|Mass|Massachusetts)\b',
         r'\bOxford,?\s+(OH|Ohio|MS|Mississippi)\b',
-        # Major US cities (excluding ambiguous ones)
+        # Major US cities
         r'\b(New York|Boston|Chicago|Philadelphia|Los Angeles|San Francisco|Washington|Seattle|Atlanta|Dallas|Houston|Miami|Denver|Phoenix|San Diego|Baltimore|Detroit|Minneapolis|Pittsburgh|Cleveland|Milwaukee|Portland|Austin|Nashville|Indianapolis|Charlotte|Columbus|San Antonio|San Jose|Jacksonville|Fort Worth|Sacramento|Las Vegas|Kansas City|Memphis|Richmond|New Orleans|Cincinnati|Madison|Ann Arbor|Berkeley|Palo Alto|Princeton|Ithaca|Durham|Chapel Hill|Evanston|Stanford|Pasadena|Boulder|Providence|Hanover|Charlottesville|Amherst|Williamstown|Claremont|West Point|Annapolis|Tucson|Gainesville|Tallahassee|Tempe|Bloomington|Urbana|Champaign|Lafayette|College Station|Norman|Stillwater|Fayetteville|Little Rock|Baton Rouge|Lubbock|Raleigh|Greensboro|Winston-Salem|Columbia|Athens|Auburn|Tuscaloosa|Clemson|Knoxville|Lexington|Louisville|Eugene|Corvallis|Iowa City|Lincoln|Lawrence|Manhattan|Storrs|Newark|New Brunswick|Buffalo|Rochester|Albany|Syracuse|Binghamton|Stony Brook|Riverside|Irvine|Santa Barbara|Santa Cruz|Davis|Merced)\b',
-        # US institutions (very specific names)
+        # US institutions
         r'\b(Harvard|Yale|Princeton|Stanford|MIT|Columbia|UCLA|UPenn|Penn|Cornell|Brown|Dartmouth|Duke|University of Chicago|Northwestern|Johns Hopkins|Caltech|University of Michigan|University of Virginia|University of Wisconsin|University of Illinois|University of Minnesota|University of Washington|University of Texas|University of North Carolina|University of Maryland|Purdue|Indiana University|Ohio State|Penn State|Rutgers|Georgetown|Vanderbilt|Emory|Carnegie Mellon|Rice|Notre Dame|USC|NYU|Boston University|Boston College|Tufts|Brandeis|University of Rochester|Case Western|Wake Forest|Georgia Tech|UC San Diego|UC Davis|UC Irvine|UC Santa Barbara|UC Riverside|William & Mary|Lehigh|Syracuse University|Tulane|George Washington|American University|Fordham|Northeastern|Pepperdine|SMU|TCU|Baylor|Villanova|Drexel|Temple|Arizona State|Florida State|Georgia State|SUNY|CUNY|NBER|Brookings|Hoover|RAND|Urban Institute)\b',
         # Federal institutions
         r'\bFederal Reserve\b', r'\bFed\b.*\b(Bank|Board)\b', r'\bNBER\b', r'\bNational Bureau of Economic Research\b',
@@ -172,18 +172,18 @@ def get_countries(institution_text):
             countries.append('USA')
             break
    
-    # China - comprehensive
+
     china_patterns = [
         r'\bChina\b', r'\bP\.?R\.?\s*China\b', r'\bPeople\'?s Republic of China\b', r'\bMainland China\b',
         # Major cities
         r'\b(Beijing|Shanghai|Guangzhou|Shenzhen|Chengdu|Hangzhou|Wuhan|Nanjing|Xi\'?an|Tianjin|Chongqing|Suzhou|Dalian|Qingdao|Changsha|Xiamen|Harbin|Jinan|Fuzhou|Zhengzhou|Kunming|Lanzhou|Hefei|Nanchang|Shijiazhuang|Urumqi|Guiyang|Taiyuan|Hohhot|Nanning|Yinchuan|Xining|Shantou|Shenyang|Changchun|Ningbo|Wenzhou|Zhuhai|Dongguan|Foshan|Huizhou|Zhongshan|Jiangmen|Zhanjiang|Shaoguan|Qingyuan)\b',
         # Universities and institutions
         r'\b(Tsinghua|Peking University|PKU|Renmin|Fudan|Zhejiang University|Shanghai Jiao Tong|SJTU|Nanjing University|USTC|University of Science and Technology of China|Wuhan University|Sun Yat-sen|SYSU|Nankai|Xiamen University|Shandong University|Huazhong|Beihang|Beijing Normal|East China Normal|ECNU|Tongji|Tianjin University|Southeast University|Central University of Finance|CUFE|Shanghai University of Finance|SUFE|CASS|Chinese Academy|Nankai University|Zhongnan|Jiaotong|Southwestern|Sichuan University|Central South|Hunan University|Dongbei|Harbin Institute|Dalian University|Ocean University|China Agricultural|Beijing Institute of Technology|South China|Guangdong|Soochow|Jiangsu|Anhui|Hebei|Henan|Hubei|Hunan|Shaanxi|Shanxi|Jilin|Liaoning|Heilongjiang|Fujian|Jiangxi|Shandong|Guangxi|Guizhou|Yunnan|Gansu|Qinghai|Ningxia|Xinjiang|Inner Mongolia)\b.*\b(University|Institute|Academy)\b',
-        # Hong Kong (separate but often grouped with China in data)
+        # Hong Kong
         r'\bHong Kong\b', r'\bHKU\b', r'\bCUHK\b', r'\bHKUST\b', r'\bCity University of Hong Kong\b', r'\bPolyU\b', r'\bLingnan\b.*\bHong Kong\b',
         # Macau
         r'\bMacau\b', r'\bMacao\b',
-        # Chinese provinces when mentioned
+        
         r'\b(Guangdong|Zhejiang|Jiangsu|Shandong|Henan|Sichuan|Hebei|Hunan|Anhui|Hubei|Fujian|Shaanxi|Jiangxi|Yunnan|Guangxi|Guizhou|Shanxi|Jilin|Gansu|Liaoning|Heilongjiang|Hainan|Qinghai|Ningxia|Tibet|Xinjiang|Inner Mongolia)\b.*\b(Province|China)\b',
     ]
    
@@ -192,7 +192,7 @@ def get_countries(institution_text):
             countries.append('China')
             break
    
-    # Taiwan - separate from China
+
     taiwan_patterns = [
         r'\bTaiwan\b', r'\bR\.?O\.?C\.?\b', r'\bRepublic of China\b',
         r'\b(Taipei|Kaohsiung|Taichung|Tainan|Hsinchu)\b',
@@ -204,11 +204,11 @@ def get_countries(institution_text):
             countries.append('Taiwan')
             break
    
-    # United Kingdom - only check if USA not already found
+
     if 'USA' not in countries:
         uk_patterns = [
             r'\bUnited Kingdom\b', r'\bU\.?K\.?\b', r'\bGreat Britain\b', r'\bEngland\b', r'\bScotland\b', r'\bWales\b', r'\bNorthern Ireland\b',
-            # UK-specific mentions
+
             r'\bCambridge,?\s+(UK|England|United Kingdom)\b',
             r'\bOxford,?\s+(UK|England|United Kingdom)\b',
             # UK cities
@@ -224,7 +224,7 @@ def get_countries(institution_text):
                 countries.append('United Kingdom')
                 break
    
-    # Germany - comprehensive
+
     germany_patterns = [
         r'\bGermany\b', r'\bDeutschland\b',
         r'\b(Berlin|Munich|München|Hamburg|Frankfurt|Cologne|Köln|Stuttgart|Düsseldorf|Dortmund|Essen|Leipzig|Bremen|Dresden|Hannover|Nuremberg|Nürnberg|Mannheim|Heidelberg|Bonn|Münster|Karlsruhe|Freiburg|Konstanz|Tübingen|Göttingen|Marburg|Regensburg|Passau|Augsburg|Aachen|Bielefeld|Bochum|Wuppertal|Kiel|Mainz|Saarbrücken|Halle|Jena|Magdeburg|Rostock|Potsdam)\b',
@@ -236,7 +236,7 @@ def get_countries(institution_text):
             countries.append('Germany')
             break
    
-    # France - comprehensive
+
     france_patterns = [
         r'\bFrance\b',
         r'\b(Paris|Lyon|Marseille|Toulouse|Nice|Nantes|Strasbourg|Montpellier|Bordeaux|Lille|Rennes|Grenoble|Aix|Aix-Marseille|Dijon|Clermont|Orléans|Tours|Angers|Cergy|Saclay)\b',
@@ -249,7 +249,7 @@ def get_countries(institution_text):
             countries.append('France')
             break
    
-    # Canada - comprehensive
+
     canada_patterns = [
         r'\bCanada\b',
         r'\b(Toronto|Montreal|Montréal|Vancouver|Ottawa|Calgary|Edmonton|Winnipeg|Quebec|Québec|Hamilton|Kitchener|Victoria|Halifax|Saskatoon|Kingston|Waterloo|London|Windsor|Oshawa|Burnaby|Surrey)\b',
@@ -262,7 +262,7 @@ def get_countries(institution_text):
             countries.append('Canada')
             break
    
-    # Japan - comprehensive
+
     japan_patterns = [
         r'\bJapan\b',
         r'\b(Tokyo|Osaka|Kyoto|Yokohama|Nagoya|Kobe|Fukuoka|Sapporo|Sendai|Hiroshima|Kawasaki|Saitama|Kitakyushu|Chiba|Niigata|Hamamatsu|Kumamoto|Okayama|Shizuoka|Kagoshima)\b',
@@ -274,7 +274,7 @@ def get_countries(institution_text):
             countries.append('Japan')
             break
    
-    # South Korea - comprehensive
+
     korea_patterns = [
         r'\bSouth Korea\b', r'\bKorea\b', r'\bRepublic of Korea\b', r'\bR\.?O\.?K\.?\b',
         r'\b(Seoul|Busan|Incheon|Daegu|Daejeon|Gwangju|Ulsan|Suwon|Goyang|Seongnam|Bucheon|Ansan)\b',
@@ -286,7 +286,7 @@ def get_countries(institution_text):
             countries.append('South Korea')
             break
    
-    # India - comprehensive
+
     india_patterns = [
         r'\bIndia\b',
         r'\b(Delhi|New Delhi|Mumbai|Bombay|Bangalore|Bengaluru|Chennai|Madras|Kolkata|Calcutta|Hyderabad|Pune|Ahmedabad|Jaipur|Lucknow|Kanpur|Nagpur|Indore|Bhopal|Patna|Vadodara|Ludhiana|Agra|Nashik|Rajkot|Varanasi|Surat|Visakhapatnam|Kochi|Thiruvananthapuram|Coimbatore|Chandigarh|Gurgaon|Noida|Ghaziabad|Bodh Gaya)\b',
@@ -298,7 +298,7 @@ def get_countries(institution_text):
             countries.append('India')
             break
    
-    # Australia - comprehensive
+
     australia_patterns = [
         r'\bAustralia\b',
         r'\b(Sydney|Melbourne|Brisbane|Perth|Adelaide|Canberra|Gold Coast|Newcastle|Wollongong|Geelong|Hobart|Townsville|Cairns|Toowoomba|Darwin|Launceston)\b',
@@ -310,7 +310,7 @@ def get_countries(institution_text):
             countries.append('Australia')
             break
    
-    # Netherlands - comprehensive
+
     netherlands_patterns = [
         r'\bNetherlands\b', r'\bHolland\b', r'\bDutch\b',
         r'\b(Amsterdam|Rotterdam|The Hague|Utrecht|Eindhoven|Groningen|Maastricht|Tilburg|Leiden|Delft|Nijmegen|Enschede|Wageningen)\b',
@@ -322,7 +322,7 @@ def get_countries(institution_text):
             countries.append('Netherlands')
             break
    
-    # Switzerland - comprehensive
+
     switzerland_patterns = [
         r'\bSwitzerland\b',
         r'\b(Zurich|Zürich|Geneva|Genève|Basel|Bern|Lausanne|St\.? Gallen|Lugano|Lucerne|Neuchâtel|Fribourg)\b',
@@ -334,7 +334,7 @@ def get_countries(institution_text):
             countries.append('Switzerland')
             break
    
-    # Italy - comprehensive
+
     italy_patterns = [
         r'\bItaly\b', r'\bItalia\b',
         r'\b(Rome|Roma|Milan|Milano|Turin|Torino|Florence|Firenze|Bologna|Naples|Napoli|Padua|Padova|Venice|Venezia|Pisa|Genoa|Genova|Palermo|Verona|Trieste|Trento|Perugia|Modena|Parma|Ancona|Siena|Bergamo|Brescia|Udine|Cagliari|Sassari|Catania|Bari|Salerno|Macerata)\b',
@@ -346,7 +346,7 @@ def get_countries(institution_text):
             countries.append('Italy')
             break
    
-    # Spain - comprehensive
+
     spain_patterns = [
         r'\bSpain\b', r'\bEspaña\b',
         r'\b(Madrid|Barcelona|Valencia|Seville|Sevilla|Zaragoza|Málaga|Malaga|Bilbao|Alicante|Córdoba|Cordoba|Valladolid|Vigo|Gijón|Granada|Pamplona|Oviedo|Santander|San Sebastián|Murcia|Salamanca|Coruña|Corunna)\b',
@@ -358,7 +358,7 @@ def get_countries(institution_text):
             countries.append('Spain')
             break
    
-    # Scandinavian countries - comprehensive
+
     sweden_patterns = [
         r'\bSweden\b',
         r'\b(Stockholm|Gothenburg|Göteborg|Malmö|Uppsala|Lund|Linköping|Örebro|Västerås|Umeå)\b',
@@ -403,7 +403,7 @@ def get_countries(institution_text):
             countries.append('Finland')
             break
    
-    # Other European countries
+
     belgium_patterns = [
         r'\bBelgium\b', r'\bBelgique\b', r'\bBelgië\b',
         r'\b(Brussels|Bruxelles|Antwerp|Antwerpen|Ghent|Gent|Leuven|Louvain|Liège|Bruges|Namur|Mons)\b',
@@ -461,7 +461,7 @@ IGNORECASE):
             countries.append('Ireland')
             break
    
-    # Eastern European countries
+
     poland_patterns = [
         r'\bPoland\b', r'\bPolska\b',
         r'\b(Warsaw|Warszawa|Kraków|Krakow|Łódź|Lodz|Wrocław|Wroclaw|Poznań|Poznan|Gdańsk|Gdansk|Szczecin|Lublin)\b',
@@ -506,7 +506,7 @@ IGNORECASE):
             countries.append('Romania')
             break
    
-    # Other European countries
+
     russia_patterns = [
         r'\bRussia\b', r'\bRussian Federation\b',
         r'\b(Moscow|Moskva|St\.? Petersburg|Novosibirsk|Yekaterinburg|Kazan|Nizhny Novgorod)\b',
@@ -540,7 +540,7 @@ IGNORECASE):
             countries.append('Ukraine')
             break
    
-    # Singapore
+
     singapore_patterns = [
         r'\bSingapore\b',
         r'\b(National University of Singapore|NUS|Nanyang|NTU|Singapore Management University|SMU|INSEAD.*Singapore|Monetary Authority of Singapore|MAS)\b',
@@ -551,7 +551,7 @@ IGNORECASE):
             countries.append('Singapore')
             break
    
-    # Israel
+
     israel_patterns = [
         r'\bIsrael\b',
         r'\b(Jerusalem|Tel Aviv|Haifa|Be\'?er Sheva|Beersheba|Ramat Gan|Herzliya)\b',
@@ -563,7 +563,7 @@ IGNORECASE):
             countries.append('Israel')
             break
    
-    # New Zealand
+
     new_zealand_patterns = [
         r'\bNew Zealand\b',
         r'\b(Auckland|Wellington|Christchurch|Hamilton|Tauranga|Dunedin|Palmerston North|Napier|Waikato)\b',
@@ -575,7 +575,7 @@ IGNORECASE):
             countries.append('New Zealand')
             break
    
-    # Latin American countries - comprehensive
+
     brazil_patterns = [
         r'\bBrazil\b', r'\bBrasil\b',
         r'\b(São Paulo|Sao Paulo|Rio de Janeiro|Brasília|Brasilia|Belo Horizonte|Salvador|Fortaleza|Curitiba|Recife|Porto Alegre|Manaus|Campinas|Goiânia|Goiania)\b',
@@ -642,7 +642,7 @@ IGNORECASE):
             countries.append('Peru')
             break
    
-    # Other Latin American countries
+
     other_latin_america = {
         'Ecuador': [r'\bEcuador\b', r'\b(Quito|Guayaquil)\b'],
         'Venezuela': [r'\bVenezuela\b', r'\b(Caracas|Maracaibo|Valencia)\b'],
@@ -658,7 +658,7 @@ IGNORECASE):
                 countries.append(country)
                 break
    
-    # Middle Eastern countries
+
     saudi_arabia_patterns = [
         r'\bSaudi Arabia\b',
         r'\b(Riyadh|Jeddah|Mecca|Medina|Dammam|Khobar|Dhahran)\b',
@@ -725,7 +725,7 @@ IGNORECASE):
             countries.append('Jordan')
             break
    
-    # African countries
+
     south_africa_patterns = [
         r'\bSouth Africa\b',
         r'\b(Cape Town|Johannesburg|Durban|Pretoria|Port Elizabeth|Bloemfontein|Pietermaritzburg|East London|Soweto|Stellenbosch)\b',
@@ -813,7 +813,7 @@ IGNORECASE):
             countries.append('Ghana')
             break
    
-    # Southeast Asian countries
+
     thailand_patterns = [
         r'\bThailand\b',
         r'\b(Bangkok|Chiang Mai|Phuket|Pattaya|Nakhon Ratchasima)\b',
@@ -869,7 +869,7 @@ IGNORECASE):
             countries.append('Vietnam')
             break
    
-    # Central Asian countries
+
     kazakhstan_patterns = [
         r'\bKazakhstan\b',
         r'\b(Almaty|Nur-Sultan|Astana|Shymkent|Aktobe|Karaganda)\b',
@@ -901,7 +901,7 @@ IGNORECASE):
             countries.append('Azerbaijan')
             break
    
-    # Other European countries
+
     other_europe = {
         'Slovakia': [r'\bSlovakia\b', r'\b(Bratislava|Košice|Kosice|Žilina|Zilina)\b'],
         'Slovenia': [r'\bSlovenia\b', r'\b(Ljubljana|Maribor)\b'],
@@ -923,7 +923,7 @@ IGNORECASE):
                 countries.append(country)
                 break
    
-    # Other Asian countries
+
     pakistan_patterns = [
         r'\bPakistan\b',
         r'\b(Karachi|Lahore|Islamabad|Rawalpindi|Faisalabad|Multan|Peshawar|Quetta)\b',
@@ -965,7 +965,7 @@ def get_subfield(title, abstract):
     if not text.strip():
         return 'Unclassified'
    
-    # Count keyword matches for each subfield
+
     scores = {}
     for subfield, keywords in SUBFIELD_KEYWORDS.items():
         score = 0
@@ -973,7 +973,7 @@ def get_subfield(title, abstract):
             score += len(re.findall(r'\b' + re.escape(keyword) + r'\b', text))
         scores[subfield] = score
    
-    # Return subfield with highest score
+
     max_score = max(scores.values())
     if max_score > 0:
         return max(scores, key=scores.get)
@@ -986,37 +986,37 @@ def clean_abstract(text):
         return ''
    
     text = str(text)
-    # Remove HTML tags
+
     text = re.sub('<[^<]+?>', '', text)
-    # Remove extra whitespace
+
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
 
 def main():
-    # Read raw data
+
     input_file = 'raw_data.csv'
    
     print(f"Loading {input_file}...")
     df = pd.read_csv(input_file, low_memory=False)
    
-    # Clean abstracts
+
     print("Cleaning abstracts...")
     df['abstract'] = df['abstract'].swifter.apply(clean_abstract)
    
-    # Extract countries
+
     print("Extracting countries...")
     df['countries_list'] = df['institutions'].swifter.apply(get_countries)
     df['countries'] = df['countries_list'].swifter.apply(lambda x: '; '.join(x))
     df['has_china_author'] = df['countries_list'].swifter.apply(lambda x: 'China' in x)
    
-    # Classify subfields
+
     print("Classifying subfields...")
     df['subfield'] = df.swifter.apply(lambda row: get_subfield(row['title'], row['abstract']), axis=1)
    
-    # Drop temporary column
+
     df = df.drop('countries_list', axis=1)
    
-    # Save cleaned data
+
     output_file = 'cleaned_data.csv'
     df.to_csv(output_file, index=False, encoding='utf-8-sig', quoting=1)
    
@@ -1024,7 +1024,7 @@ def main():
     print(f"Total articles: {len(df)}")
     print(f"Articles with China: {df['has_china_author'].sum()}")
    
-    # Print country distribution
+
     print("\nCountry distribution:")
     all_countries = []
     for countries_str in df['countries']:
