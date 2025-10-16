@@ -2,21 +2,21 @@
 
 ## 1. Project Goal
 
-This project aims to analyze the publication landscape of 30 prominent economics journals over the past two decades (2005-2025). The primary goal is to investigate the representation of authors affiliated with Chinese institutions and to identify how this presence has evolved over time and across different tiers of journal prestige.
+This project aims to analyze the publication landscape of 30 prominent economics journals over the past two decades (2005-2025). It is often the case that the majority of articles within published journals are affiliated with American universities/authors. However, there is a common belief that this trend is changing over time. The primary goal of this project is to investigate the representation of authors affiliated with Chinese institutions and to identify how this presence has evolved over time and across different tiers of journal prestige.
 
 The key research questions are:
 
-- **How has the number of publications with China-affiliated authors changed in top economics journals since 2005?**
+- **How has the number of publications with foreign-affiliated authors changed in top economics journals since 2005?**
 
-- **Is there a significant difference in the representation of China-affiliated authors between top-tier, mid-tier, and lower-tier journals?**
+- **Is there a significant difference in the representation of foreign-affiliated authors between top-tier, mid-tier, lower-tier and field-specific journals?**
 
-- **What are the most common economic subfields for articles with China-affiliated authors?**
+- **What are the most common economic subfields for articles with foreign-affiliated authors?**
 
 ---
 
 ##  2. Data Source and Collection
 ### Data Source
-The sole data source for this project is the **Crossref API**. Crossref is a non-profit organization that maintains a massive, public database of scholarly publication metadata. This data is supplied directly by the publishers, ensuring it is a reliable and authoritative source for bibliographic information.
+The sole data source for this project is the **Crossref API**. Crossref is a non-profit organization that doesn't require an API key or authentification. Crossref maintains a massive, public database of scholarly publication metadata. This data is supplied directly by the publishers, ensuring it is a reliable and authoritative source for bibliographic information.
 
 ### Data Collection Method
 
@@ -57,14 +57,14 @@ The final dataset (cleaned_data.csv) is organized with the following columns:
 > **Note:** The primary limitation of this dataset is its reliance on the completeness of the Crossref database.
 
 * **Missing Abstracts:** A significant portion of abstracts, especially for articles published before ~2010, are not available. This directly impacts the accuracy of the `subfield` classification.
-* **Incomplete Affiliations:** While the new country identification method is far more robust, its accuracy is still constrained by the quality of the affiliation data provided by publishers.
+* **Incomplete Affiliations:** While the new country identification method is far more robust, its accuracy is still constrained by the quality of the affiliation data provided by publishers. For instance, certain articles do not provide enough institution information to deduct country information from that column.
 * **Keyword Classification Errors:** The subfield classification, while significantly improved, is still a heuristic method and may not capture the nuance of every paper perfectly, especially for interdisciplinary work.
 
 ---
 
 ## 3. Analysis and Findings
 ### Methodology
-The analysis is conducted using the pandas library in Python. It involves grouping, aggregating, and counting the data to answer the core research questions. Proportions and percentages are calculated to compare trends across different groups (tiers, years, countries). The findings are visualized using Matplotlib to create time-series line charts and stacked bar charts.
+The analysis is conducted using the pandas library in Python. It involves grouping, aggregating, and counting the data to answer the core research questions. Proportions and percentages are calculated to compare trends across different groups (tiers, years, countries). The findings are visualized using Matplotlib to create line charts, pie charts, and stacked bar charts.
 
 ### Project Findings
 
