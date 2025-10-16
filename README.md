@@ -89,20 +89,10 @@ First, we examine the overall publication volume. The number of articles publish
 
 To see the detail behind this summary, the following plots show the trends for each individual journal within the four tiers.
 
-**Figure 2: Trends in Top 5 Journals**
-<img width="1000" height="500" alt="Figure_2" src="https://github.com/user-attachments/assets/d0d7165d-157e-4761-8fac-9ff06cd7dbd6" />
-
-
-**Figure 3: Trends in Field Specific Journals**
-<img width="1000" height="500" alt="Figure_3" src="https://github.com/user-attachments/assets/ce4a2147-f5e2-4490-ad22-8221a1b4eb70" />
-
-
-**Figure 4: Trends in Mid-Tier Journals**
-<img width="1000" height="500" alt="Figure_4" src="https://github.com/user-attachments/assets/f1f44953-479a-4d42-9783-694f617be16b" />
-
-
-**Figure 5: Trends in Lower-Tier & Regional Journals**
-<img width="1000" height="500" alt="Figure_5" src="https://github.com/user-attachments/assets/042a8308-ce86-4643-8d42-1b7791b013ad" />
+| Journals Grouped by Tier                                                                                                                              |                                                                                                                                                         |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                             **Figure 2: Trends in Top 5 Journals**<br><img alt="Figure_2" src="https://github.com/user-attachments/assets/d0d7165d-157e-4761-8fac-9ff06cd7dbd6">                                             |                                       **Figure 3: Trends in Top Field Journals**<br><img alt="Figure_3" src="https://github.com/user-attachments/assets/ce4a2147-f5e2-4490-ad22-8221a1b4eb70">                                        |
+|                                            **Figure 4: Trends in Mid-Tier Journals**<br><img alt="Figure_4" src="https://github.com/user-attachments/assets/f1f44953-479a-4d42-9783-694f617be16b">                                            |                                 **Figure 5: Trends in Lower-Tier & Regional Journals**<br><img alt="Figure_5" src="https://github.com/user-attachments/assets/042a8308-ce86-4643-8d42-1b7791b013ad">                                 |
 
 
 #### Part 2: Country-Level Publication Analysis
@@ -120,6 +110,10 @@ While the bar chart shows absolute numbers, it's also useful to see the proporti
 
 **Figure 7: Tier Distribution for the Top 6 Countries**
 <img width="1920" height="967" alt="Figure_8" src="https://github.com/user-attachments/assets/d3feff78-43fc-41b2-bc9e-0f16f5e4b5cb" />
+
+**Figure 8: Share of Journal Tiers in China**
+<img width="1920" height="967" alt="Figure_9" src="https://github.com/user-attachments/assets/eff94011-d3cd-4760-a34a-6428e4f5d57a" />
+
 
 ### Limitations of the Analysis
 
