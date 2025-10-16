@@ -112,7 +112,8 @@ Next, we analyze the geographic distribution of author affiliations.
 **Figure 6: Total Articles per Country, Split by Journal Tier**
 
 This chart shows the total number of articles for each country, stacked by the tier of the journal.
-<img width="1000" height="600" alt="Figure_7" src="https://github.com/user-attachments/assets/ed12d80f-6986-4f1a-ad39-2d1644c80731" />
+<img width="1000" height="600" alt="Figure_7 (1)" src="https://github.com/user-attachments/assets/f73667ae-8b96-4eb0-b479-cd1f57b91e36" />
+
 
 
 While the bar chart shows absolute numbers, it's also useful to see the proportional distribution. The following pie charts show, for the top 6 contributing countries, what percentage of their total output is published in each tier. This reveals different publication patterns; for instance, a higher proportion of US & Canada-affiliated papers are in top-tier journals compared to other countries, while China-affiliated papers are focused on mid-tier journals.
