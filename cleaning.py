@@ -1036,5 +1036,5 @@ def main():
     for country, count in country_counts.most_common(30):
         print(f"  {country}: {count}")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
