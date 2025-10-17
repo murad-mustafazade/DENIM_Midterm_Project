@@ -136,7 +136,7 @@ def download_journal(journal_name, issn, tier, from_year=2005, to_year=2025):
     return articles
 
 def main():
-    """Create a CSV file containing all the inflormatio"""    
+    """Create a CSV file containing all the information"""    
     all_articles = []
     
     for tier, journals in JOURNALS.items():
