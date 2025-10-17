@@ -3,4 +3,3 @@ requests
 swifter
 matplotlib
 seaborn
-collections
