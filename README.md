@@ -141,3 +141,13 @@ While the bar chart shows absolute numbers, it's also useful to see the proporti
 * **Validate Subfield Classification:** The heuristic `subfield` classification could be validated against a subset of articles where author-provided JEL (Journal of Economic Literature) codes are available.
 * **International Collaboration Analysis:** The script could be modified to generate a `num_countries` column to analyze trends in international co-authorship over time.
 * **Author-Level Tracking:** The analysis could be extended to track the publication records of individual authors.
+
+
+
+### Appendix
+
+1. Clone the repository
+2. Install the required dependencies using [requirements.txt](requirements.txt)
+3. Run the code [scraping.py](scraping.py) to collect and store all of the raw data from html pages in a csv.
+4. Run the code [cleaning.py](cleaning.py) to clean the raw data and add columns for the final dataset.
+5. Run the code [plots.py](plots.py) to create the plots for data analysis and visualization.
